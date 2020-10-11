@@ -19,7 +19,10 @@ public class PlayerMove : MonoBehaviour
 
     public GroundCheck groundCheckScript; //non blue letter = naming that public.
 
-    private int hitCooler;
+    public AudioSource Sounds;
+    public AudioClip Hurt;
+    public AudioClip Hurt_1;
+    public AudioClip Hurt_Impact;
 
     void Update()
     {
@@ -55,7 +58,10 @@ public class PlayerMove : MonoBehaviour
         if (playerHit == true)
         {
             hurtCount += 1;
-            
+
+            Sounds.PlayOneShot(Hurt);
+            Sounds.PlayOneShot(Hurt_Impact);
+
             if (gameObject.GetComponent<SpriteRenderer>().flipX == false)
             {
                 thisRigidbody2D.AddForce(Vector2.up * knockforce, ForceMode2D.Impulse);
