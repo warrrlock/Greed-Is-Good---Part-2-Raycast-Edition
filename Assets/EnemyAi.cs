@@ -34,8 +34,8 @@ public class EnemyAi : MonoBehaviour
 
         if (wallHit.collider != null && wallHit.collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hitting player");
-            //PlayerMove.playerHit = true;
+            Debug.Log("player contact");
+            PlayerMove.playerHit = true;
             int randomNum = Random.Range(0, 100);
             if (randomNum < 50)
             {

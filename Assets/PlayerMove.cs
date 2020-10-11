@@ -10,6 +10,9 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody2D thisRigidbody2D;
     public float force = 15f;
     public float speed = 1f;
+    public float knockforce = 5;
+
+    private float hurtCount;
 
     public static bool playerHit = false;
     public float gravityInAir;
@@ -48,21 +51,35 @@ public class PlayerMove : MonoBehaviour
 
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
-        /* will work on this knockback mechanic on the final build... ask greg T_T
-        if (playerHit == true )
+
+        if (playerHit == true)
         {
-            hitCooler += 1;
-            thisSprite.color = Color.red;
-            thisRigidbody2D.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+            hurtCount += 1;
+            
+            if (gameObject.GetComponent<SpriteRenderer>().flipX == false)
+            {
+                thisRigidbody2D.AddForce(Vector2.up * knockforce, ForceMode2D.Impulse);
+                thisRigidbody2D.AddForce(Vector2.right * -knockforce, ForceMode2D.Impulse);
+            }
+            if (gameObject.GetComponent<SpriteRenderer>().flipX == true)
+            {
+                thisRigidbody2D.AddForce(Vector2.up * knockforce, ForceMode2D.Impulse);
+                thisRigidbody2D.AddForce(Vector2.right * knockforce, ForceMode2D.Impulse);
+            }
+
+            Debug.Log("hurt");
         }
-        if (hitCooler >= 2) {
-            Debug.Log("not hurt");
+
+        if (hurtCount >= 3) {
             playerHit = false;
-            thisSprite.color = Color.white;
-            hitCooler = 0;
-        }*/ 
+            hurtCount = 0;
+            Debug.Log("not hurt");
+            Debug.Log(" " + hurtCount);
+        }
 
     }
+
+    
 
 
     // Update is called once per frame

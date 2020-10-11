@@ -9,11 +9,15 @@ public class DoorOpen : MonoBehaviour
     public LayerMask doorMask;
     public float RayOffset = 0.5f;
 
+    public AudioSource Sounds;
+    public AudioClip DoorOpening;
+
     // Start is called before the first frame update
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && ButtonScript.ButtonTurnOn == true && nearDoor == true)
         {      
+            Sounds.PlayOneShot(DoorOpening);
              Vector3 newPosition = new Vector3(transform.position.x, -10f, transform.position.z);
              transform.position = newPosition;
              Debug.Log("Open door");          
