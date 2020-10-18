@@ -40,10 +40,10 @@ public class PlayerAnim : MonoBehaviour
         }
 
        
-            if (GroundCheck.isGrounded == false)
-            {
-                gameObject.GetComponent<SpriteRenderer>().sprite = jumpAnim;
-            }
+        if (GroundCheck.isGrounded == false)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = jumpAnim;
+        }
        
 
     }
